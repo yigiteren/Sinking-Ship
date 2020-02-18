@@ -20,17 +20,17 @@ public class CameraController : MonoBehaviour
     }
     void Update()
     {
-        rightLeftLook(); //Rotates player body
-        upDownLook(); // Rotates camera
+        RightLeftLook(); //Rotates player body
+        UpDownLook(); // Rotates camera
     }
 
-    void rightLeftLook()
+    void RightLeftLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * lookSensitivity * Time.deltaTime;
         player.Rotate(Vector3.up * mouseX); // Rotates body
     }
 
-    void upDownLook()
+    void UpDownLook()
     {
         float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity * Time.deltaTime;
         

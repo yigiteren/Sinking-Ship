@@ -6,13 +6,13 @@ public class HoleSpawnPosition : MonoBehaviour
 {
     void Awake()
     {
-
         HoleSpawn holeSpawn = new HoleSpawn();
         holeSpawn.pos = transform.position;
         holeSpawn.rot = transform.rotation;
+        holeSpawn.canSpawn = true;
 
         GameObject gameManager = GameObject.Find("Game Manager");
-        gameManager.GetComponent<GameManager>().holeSpawns.Add(holeSpawn);
+        gameManager.GetComponent<GameManager>().AddNewHoleSpawnToList(holeSpawn);
 
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         renderer.enabled = false;
@@ -21,6 +21,8 @@ public class HoleSpawnPosition : MonoBehaviour
 
 public struct HoleSpawn
 {
+    public int id;
     public Vector3 pos;
     public Quaternion rot;
+    public bool canSpawn;
 }

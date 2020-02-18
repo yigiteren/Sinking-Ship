@@ -8088,6 +8088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holePrefab: {fileID: 4462618226504958061, guid: 143b76cfdab1f214db7ae1da0802acd4,
     type: 3}
+  holeSpawnFrequency: 3
 --- !u!1 &783744571
 GameObject:
   m_ObjectHideFlags: 0

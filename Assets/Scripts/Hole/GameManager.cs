@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateSpawnDelay()
     {
-        spawnDelay -= spawnDelayReducePerSecond;
+        spawnDelay -= spawnDelayReducePerSecond * Time.deltaTime;
         if (spawnDelay < minimumSpawnDelay) spawnDelay = minimumSpawnDelay;
     }
 
@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
             if(spawn.canSpawn == false) // This means it is full.
             {
                 currentWaterAmount += holeFillAmountPerSecond * Time.deltaTime * spawn.hole.transform.localScale.x;
-                Debug.Log(spawn.hole.transform.localScale.x);
                 if (currentWaterAmount > maxWaterAmount) currentWaterAmount = maxWaterAmount;
             }
         }

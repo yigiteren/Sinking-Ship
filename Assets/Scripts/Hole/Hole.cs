@@ -7,6 +7,13 @@ public class Hole : MonoBehaviour
     public int holeSpawnID = -1;
     public float holeHealth = 3;
 
+    private void Start()
+    {
+        int randomDamage = Random.Range(0, 2);
+        for (int i = 0; i < randomDamage; i++)
+            DamageHole();
+    }
+
     public void DamageHole()
     {
         holeHealth -= 1;

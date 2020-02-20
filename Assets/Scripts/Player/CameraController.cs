@@ -26,13 +26,13 @@ public class CameraController : MonoBehaviour
 
     void RightLeftLook()
     {
-        float mouseX = Input.GetAxis("Mouse X") * lookSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * lookSensitivity;
         player.Rotate(Vector3.up * mouseX); // Rotates body
     }
 
     void UpDownLook()
     {
-        float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity;
         
         upDownRotation -= mouseY; //Make the '-' -> '+' for inverse look
         upDownRotation = Mathf.Clamp(upDownRotation, -lookUpLimit, lookDownLimit);

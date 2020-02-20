@@ -2153,6 +2153,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1775515691259403004, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
+        type: 3}
+      propertyPath: lookSensitivity
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0043ba1aa5a9f854c85a8af7799a3fd5, type: 3}
 --- !u!1 &158426410
@@ -8168,9 +8173,11 @@ MonoBehaviour:
   holePrefab: {fileID: 4462618226504958061, guid: 143b76cfdab1f214db7ae1da0802acd4,
     type: 3}
   waterLevelObject: {fileID: 130480013}
-  holeSpawnFrequency: 3
   holeFillAmountPerSecond: 2
   maxWaterAmount: 100
+  spawnDelay: 5
+  spawnDelayReducePerSecond: 0.016
+  minimumSpawnDelay: 3
   waterLevelFinalHeight: 1.5
 --- !u!1 &783744571
 GameObject:
@@ -14340,25 +14347,6 @@ Transform:
   m_Father: {fileID: 1163587018}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1440668582 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1775515690803538082, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-    type: 3}
-  m_PrefabInstance: {fileID: 142474060}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1440668585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440668582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e051d069670d4647a5fb9ef5de205af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 7
 --- !u!1 &1442836981
 GameObject:
   m_ObjectHideFlags: 0

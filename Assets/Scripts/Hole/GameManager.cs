@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
     public List<HoleSpawn> holeSpawns = new List<HoleSpawn>();
     [SerializeField] private GameObject holePrefab = null;
     [SerializeField] private GameObject waterLevelObject = null;
-    [SerializeField] private float holeSpawnFrequency = 3f;
     [SerializeField] private float holeFillAmountPerSecond = 2f;
     [SerializeField] private float maxWaterAmount = 100f;
+    [SerializeField] private float spawnDelay = 10f;
+    [SerializeField] private float spawnDelayReducePerSecond = 0.032f;
+    [SerializeField] private float minimumSpawnDelay = 3f;
 
     private float currentWaterAmount = 0;
     private bool isStarted = false;
@@ -28,7 +30,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        UpdateSpawnDelay();
         UpdateWaterLevel();
+
         //Instantiates holes for test purposes.
         if(!isStarted)
         {
@@ -37,18 +41,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void UpdateSpawnDelay()
+    {
+        spawnDelay -= spawnDelayReducePerSecond;
+        if (spawnDelay < minimumSpawnDelay) spawnDelay = minimumSpawnDelay;
+    }
+
     private void UpdateWaterLevel()
     {
         foreach(HoleSpawn spawn in holeSpawns)
         {
             if(spawn.canSpawn == false) // This means it is full.
             {
-                currentWaterAmount += holeFillAmountPerSecond * Time.deltaTime;
+                currentWaterAmount += holeFillAmountPerSecond * Time.deltaTime * spawn.hole.transform.localScale.x;
+                Debug.Log(spawn.hole.transform.localScale.x);
                 if (currentWaterAmount > maxWaterAmount) currentWaterAmount = maxWaterAmount;
             }
         }
-
-        Debug.Log("Current water percentage: " + GetWaterPercentage() + "%");
 
         float heightOfWater = Map(0, maxWaterAmount, waterLevelStartingHeight, waterLevelFinalHeight, currentWaterAmount);
         Vector3 newPos = waterLevelObject.transform.position;
@@ -67,19 +76,21 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnAHole()
     {
-        yield return new WaitForSeconds(holeSpawnFrequency);
+        yield return new WaitForSeconds(spawnDelay);
 
         List<HoleSpawn> useableHoles = holeSpawns.FindAll(hole => hole.canSpawn == true);
 
         if(useableHoles.Count <= 0) { isStarted = false; yield break; }
 
         HoleSpawn randomSpawn = useableHoles[Random.Range(0, useableHoles.Count - 1)];
-        randomSpawn.canSpawn = false;
-        holeSpawns[randomSpawn.id] = randomSpawn;
 
         GameObject spawnedHole = Instantiate(holePrefab, randomSpawn.pos, randomSpawn.rot);
         spawnedHole.GetComponent<Hole>().holeSpawnID = randomSpawn.id;
-    
+
+        randomSpawn.canSpawn = false;
+        randomSpawn.hole = spawnedHole;
+
+        holeSpawns[randomSpawn.id] = randomSpawn;
         isStarted = false;
     }
 

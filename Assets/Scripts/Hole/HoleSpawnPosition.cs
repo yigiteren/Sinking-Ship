@@ -25,4 +25,5 @@ public struct HoleSpawn
     public Vector3 pos;
     public Quaternion rot;
     public bool canSpawn;
+    public GameObject hole;
 }

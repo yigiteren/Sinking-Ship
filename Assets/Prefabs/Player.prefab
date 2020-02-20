@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1775515690803538080}
   - component: {fileID: 1775515690803538081}
+  - component: {fileID: 1440668585}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -130,6 +131,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1440668585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775515690803538082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e051d069670d4647a5fb9ef5de205af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 7
 --- !u!1 &1775515691259402993
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +157,7 @@ GameObject:
   - component: {fileID: 1775515691259402992}
   - component: {fileID: 1775515691259403005}
   - component: {fileID: 1775515691259403004}
+  - component: {fileID: 5521982130635955470}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -262,3 +277,15 @@ MonoBehaviour:
   lookDownLimit: 90
   lookUpLimit: 90
   player: {fileID: 1775515690803538080}
+--- !u!114 &5521982130635955470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775515691259402993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93552e96735a9e4e950f4dc9ed76220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

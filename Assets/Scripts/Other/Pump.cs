@@ -21,7 +21,5 @@ public class Pump : MonoBehaviour
     {
         if(gameManager.GetCurrentWaterAmount() >= pumpDrawHeight && gameManager.GetWaterPercentage() != 100)
             gameManager.DecreaseWaterLevel(decrease * Time.deltaTime);
-        
-        Debug.Log(gameManager.GetCurrentWaterAmount());
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    float lookSensitivity = 200f;
+    public float lookSensitivity = 200f;
     [SerializeField] [Range(0,90)]
     float lookDownLimit = 90.0f;
     [SerializeField] [Range(0,90)]

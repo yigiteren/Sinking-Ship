@@ -2177,11 +2177,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 902428976013510089, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -70
-      objectReference: {fileID: 0}
     - target: {fileID: 1775515690803538080, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2241,56 +2236,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994827624446579622, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994827624446579622, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994827624446579622, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994827624446579622, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994827624446579622, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994827624446579622, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994827624446579622, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994827624446579622, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857591178221678831, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_margin.z
-      value: 0.3345642
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857591178221678831, guid: 0043ba1aa5a9f854c85a8af7799a3fd5,
-        type: 3}
-      propertyPath: m_textAlignment
-      value: 513
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0043ba1aa5a9f854c85a8af7799a3fd5, type: 3}
@@ -8977,6 +8922,7 @@ MonoBehaviour:
   spawnDelay: 5
   spawnDelayReducePerSecond: 0.016
   minimumSpawnDelay: 3
+  playerInfo: {fileID: 11400000, guid: e5adf80a20e7a54419ec2df153e950de, type: 2}
   waterLevelFinalHeight: 1.5
 --- !u!1 &783744571
 GameObject:

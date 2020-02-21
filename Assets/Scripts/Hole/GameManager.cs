@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float spawnDelay = 10f;
     [SerializeField] private float spawnDelayReducePerSecond = 0.032f;
     [SerializeField] private float minimumSpawnDelay = 3f;
+    [SerializeField] private PlayerInfo playerInfo = null;
 
     private float currentWaterAmount = 0;
     private int currentAmountOfHoles = 0;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         UpdateSpawnDelay();
         UpdateWaterLevel();
+        CheckGameOver();
 
         if(!isStarted)
         {
@@ -48,6 +51,15 @@ public class GameManager : MonoBehaviour
     {
         spawnDelay -= spawnDelayReducePerSecond * Time.deltaTime;
         if (spawnDelay < minimumSpawnDelay) spawnDelay = minimumSpawnDelay;
+    }
+
+    private void CheckGameOver()
+    {
+        if(GetWaterPercentage() == 100)
+        {
+            playerInfo.UpdateHighScore();
+            SceneManager.LoadScene(2);
+        }
     }
 
     private void UpdateWaterLevel()
@@ -92,6 +104,7 @@ public class GameManager : MonoBehaviour
         randomSpawn.canSpawn = false;
         randomSpawn.hole = spawnedHole;
         score += 100;
+        playerInfo.score = score;
         currentAmountOfHoles++;
 
         holeSpawns[randomSpawn.id] = randomSpawn;
@@ -104,6 +117,7 @@ public class GameManager : MonoBehaviour
         holeToSetFree.canSpawn = true;
         holeSpawns[holeToSetFree.id] = holeToSetFree;
         score += 100;
+        playerInfo.score = score;
         currentAmountOfHoles--;
     }
 
@@ -114,6 +128,7 @@ public class GameManager : MonoBehaviour
     public void SetCurrentWaterAmount(float waterAmount) {currentWaterAmount = waterAmount; }
     public int GetScore() { return score; }
     public int GetAmountOfHoles() { return currentAmountOfHoles; }
+    public PlayerInfo GetPlayerInfo() { return playerInfo; }
     static float Map(float a1, float a2, float b1, float b2, float s) => b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 
 }

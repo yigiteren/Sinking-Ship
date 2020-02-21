@@ -15,11 +15,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float minimumSpawnDelay = 3f;
 
     private float currentWaterAmount = 0;
+    private int currentAmountOfHoles = 0;
     private bool isStarted = false;
     private int currentHoleSpawnID = 0;
 
     private float waterLevelStartingHeight = 0;
     [SerializeField] private float waterLevelFinalHeight = 1.5f;
+
+    private int score = 0;
 
 
     private void Start()
@@ -33,12 +36,12 @@ public class GameManager : MonoBehaviour
         UpdateSpawnDelay();
         UpdateWaterLevel();
 
-        //Instantiates holes for test purposes.
         if(!isStarted)
         {
             isStarted = true;
             StartCoroutine(SpawnAHole());
         }
+
     }
 
     private void UpdateSpawnDelay()
@@ -88,6 +91,8 @@ public class GameManager : MonoBehaviour
 
         randomSpawn.canSpawn = false;
         randomSpawn.hole = spawnedHole;
+        score += 100;
+        currentAmountOfHoles++;
 
         holeSpawns[randomSpawn.id] = randomSpawn;
         isStarted = false;
@@ -98,7 +103,8 @@ public class GameManager : MonoBehaviour
         HoleSpawn holeToSetFree = holeSpawns.Find(hole => hole.id == id);
         holeToSetFree.canSpawn = true;
         holeSpawns[holeToSetFree.id] = holeToSetFree;
-
+        score += 100;
+        currentAmountOfHoles--;
     }
 
     public float GetWaterPercentage() { return currentWaterAmount / maxWaterAmount * 100; }
@@ -106,6 +112,8 @@ public class GameManager : MonoBehaviour
     public float GetHoleFillAmount() { return holeFillAmountPerSecond; }
     public void DecreaseWaterLevel(float decrease) {currentWaterAmount -= decrease; if (currentWaterAmount < 0) currentWaterAmount = 0;}
     public void SetCurrentWaterAmount(float waterAmount) {currentWaterAmount = waterAmount; }
+    public int GetScore() { return score; }
+    public int GetAmountOfHoles() { return currentAmountOfHoles; }
     static float Map(float a1, float a2, float b1, float b2, float s) => b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 
 }

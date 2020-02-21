@@ -19,9 +19,8 @@ public class Pump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameManager.DecreaseWaterLevel(decrease * Time.deltaTime);
-        if(gameManager.GetCurrentWaterAmount() < pumpDrawHeight)
-        gameManager.SetCurrentWaterAmount(pumpDrawHeight);
+        if(gameManager.GetCurrentWaterAmount() >= pumpDrawHeight && gameManager.GetWaterPercentage() != 100)
+            gameManager.DecreaseWaterLevel(decrease * Time.deltaTime);
         
         Debug.Log(gameManager.GetCurrentWaterAmount());
     }

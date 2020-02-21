@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
     public float GetWaterPercentage() { return currentWaterAmount / maxWaterAmount * 100; }
     public float GetCurrentWaterAmount() { return currentWaterAmount; }
     public float GetHoleFillAmount() { return holeFillAmountPerSecond; }
-    public void DecreaseWaterLevel(float decrease) {currentWaterAmount -= decrease; }
+    public void DecreaseWaterLevel(float decrease) {currentWaterAmount -= decrease; if (currentWaterAmount < 0) currentWaterAmount = 0;}
     public void SetCurrentWaterAmount(float waterAmount) {currentWaterAmount = waterAmount; }
     static float Map(float a1, float a2, float b1, float b2, float s) => b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 

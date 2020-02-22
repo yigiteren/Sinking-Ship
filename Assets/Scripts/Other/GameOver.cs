@@ -6,13 +6,12 @@ using TMPro;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] PlayerInfo playerInfo = null;
     [SerializeField] TextMeshProUGUI score = null;
     [SerializeField] TextMeshProUGUI highScore = null;
     void Start()
     {
-        score.SetText(playerInfo.score.ToString());
-        highScore.SetText(playerInfo.highScore.ToString());
+        score.SetText(PlayerPrefs.GetInt("score", 0).ToString());
+        highScore.SetText(PlayerPrefs.GetInt("highscore", 0).ToString());
     }
 
     public void LoadMainMenu()

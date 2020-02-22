@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float spawnDelay = 10f;
     [SerializeField] private float spawnDelayReducePerSecond = 0.032f;
     [SerializeField] private float minimumSpawnDelay = 3f;
-    [SerializeField] private PlayerInfo playerInfo = null;
 
     private float currentWaterAmount = 0;
     private int currentAmountOfHoles = 0;
@@ -25,14 +24,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float waterLevelFinalHeight = 1.5f;
 
     private int score = 0;
+    private int highScore = 0;
 
 
     private void Start()
     {
         waterLevelStartingHeight = waterLevelObject.transform.position.y;
         waterLevelFinalHeight += waterLevelStartingHeight;
-        playerInfo.score = 0;
-        AudioListener.volume = playerInfo.sound/100f;
+        score = 0;
+        highScore = PlayerPrefs.GetInt("highscore", 0);
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -61,12 +62,19 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-            playerInfo.UpdateHighScore();
-            Time.timeScale = 1f;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.lockState = CursorLockMode.Confined;
-            SceneManager.LoadScene(2);
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("highscore", score);
+        }
+
+        PlayerPrefs.SetInt("score", score);
+
+        Time.timeScale = 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
+        SceneManager.LoadScene(2);
     }
 
     private void UpdateWaterLevel()
@@ -111,7 +119,6 @@ public class GameManager : MonoBehaviour
         randomSpawn.canSpawn = false;
         randomSpawn.hole = spawnedHole;
         score += 100;
-        playerInfo.score = score;
         currentAmountOfHoles++;
 
         holeSpawns[randomSpawn.id] = randomSpawn;
@@ -124,7 +131,6 @@ public class GameManager : MonoBehaviour
         holeToSetFree.canSpawn = true;
         holeSpawns[holeToSetFree.id] = holeToSetFree;
         score += 100;
-        playerInfo.score = score;
         currentAmountOfHoles--;
     }
 
@@ -135,7 +141,6 @@ public class GameManager : MonoBehaviour
     public void SetCurrentWaterAmount(float waterAmount) {currentWaterAmount = waterAmount; }
     public int GetScore() { return score; }
     public int GetAmountOfHoles() { return currentAmountOfHoles; }
-    public PlayerInfo GetPlayerInfo() { return playerInfo; }
     static float Map(float a1, float a2, float b1, float b2, float s) => b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 
 }

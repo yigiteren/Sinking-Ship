@@ -36,7 +36,5 @@ public class MovementController : MonoBehaviour
         if (motion.z < -movementSpeed) motion.z = -movementSpeed;
 
         controller.Move(motion * Time.deltaTime);
-
-        Debug.Log(controller.velocity);
     }
 }

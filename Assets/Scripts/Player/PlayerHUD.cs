@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using TMPro;
+
 
 public class PlayerHUD : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI sensitivity = null;
     [SerializeField] TextMeshProUGUI sound = null;
 
+    [SerializeField] Slider sensitivitySlider;
+    [SerializeField] Slider soundSlider;
+
     [SerializeField] KeyCode pauseKey = KeyCode.Escape;
 
     GameManager gameManager = null;
@@ -25,6 +29,16 @@ public class PlayerHUD : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         cameraController = GameObject.Find("Camera").GetComponent<CameraController>();
+
+        cameraController.lookSensitivity = PlayerPrefs.GetFloat("sensitivity", 3);
+        sensitivity.SetText(cameraController.lookSensitivity.ToString());
+        sensitivitySlider.value = cameraController.lookSensitivity;
+
+
+        AudioListener.volume = PlayerPrefs.GetFloat("volume", 100) / 100f;
+        sound.SetText(PlayerPrefs.GetFloat("volume", 100).ToString());
+        soundSlider.value = PlayerPrefs.GetFloat("volume", 100);
+
     }
 
     void Update()
@@ -53,8 +67,8 @@ public class PlayerHUD : MonoBehaviour
                 pauseMenu.SetActive(false);
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 UnityEngine.Cursor.visible = false;
-                cameraController.lookSensitivity = gameManager.GetPlayerInfo().sensitivity;
-                AudioListener.volume = gameManager.GetPlayerInfo().sound/100f;
+                cameraController.lookSensitivity = PlayerPrefs.GetFloat("sensitivity", 3);
+                AudioListener.volume = PlayerPrefs.GetFloat("volume", 100) / 100f;
             }
         }
         
@@ -62,13 +76,15 @@ public class PlayerHUD : MonoBehaviour
 
     public void ChangeSensitivity(float value)
     {
-        gameManager.GetPlayerInfo().sensitivity = value;
+        PlayerPrefs.SetFloat("sensitivity", value);
+        PlayerPrefs.Save();
         sensitivity.SetText(value.ToString());
     }
 
     public void ChangeSound(float value)
     {
-        gameManager.GetPlayerInfo().sound = value;
+        PlayerPrefs.SetFloat("volume", value);
+        PlayerPrefs.Save();
         sound.SetText(value.ToString());
     }
 }

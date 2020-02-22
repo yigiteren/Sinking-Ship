@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 584b1c2576e113f43b05a6abe914a68c,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -669,9 +669,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This game was made for Brackeys game jam. It is made in 7 days and no
-    premade assets were used. (Other than sounds)\n\nMade by\nYi\u011Fit Eren (Pronounced
-    like Yeet)\nFahrican Elidemir\n\nThanks all for playing!"
+  m_text: "This game was made for Brackeys game jam. It is made in 7 days.\n\nMade
+    by\nYi\u011Fit Eren (Pronounced like Yeet)\nFahrican Elidemir\n\nThanks all for
+    playing!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c88274f3f8aad04f8f6880a6945ec1c, type: 2}
   m_sharedMaterial: {fileID: -73953527561552004, guid: 3c88274f3f8aad04f8f6880a6945ec1c,

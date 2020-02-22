@@ -37,7 +37,9 @@ public class GameManager : MonoBehaviour
     {
         UpdateSpawnDelay();
         UpdateWaterLevel();
-        CheckGameOver();
+
+        if(GetWaterPercentage() == 100)
+        GameOver();
 
         if(!isStarted)
         {
@@ -53,13 +55,10 @@ public class GameManager : MonoBehaviour
         if (spawnDelay < minimumSpawnDelay) spawnDelay = minimumSpawnDelay;
     }
 
-    private void CheckGameOver()
+    public void GameOver()
     {
-        if(GetWaterPercentage() == 100)
-        {
             playerInfo.UpdateHighScore();
             SceneManager.LoadScene(2);
-        }
     }
 
     private void UpdateWaterLevel()

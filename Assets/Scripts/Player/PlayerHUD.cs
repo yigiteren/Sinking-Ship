@@ -13,9 +13,12 @@ public class PlayerHUD : MonoBehaviour
 
     //Pause Menu Elements
     [SerializeField] GameObject pauseMenu = null;
+    [SerializeField] TextMeshProUGUI sensitivity = null;
+    [SerializeField] TextMeshProUGUI sound = null;
 
     [SerializeField] KeyCode pauseKey = KeyCode.Escape;
 
+    float soundKeep = 100;
     GameManager gameManager = null;
     CameraController cameraController = null;
 
@@ -41,6 +44,7 @@ public class PlayerHUD : MonoBehaviour
                 pauseMenu.SetActive(true);
                 UnityEngine.Cursor.lockState = CursorLockMode.Confined;
                 cameraController.lookSensitivity = 0f;
+                AudioListener.volume = 0f;
             }
             else
             {
@@ -48,6 +52,7 @@ public class PlayerHUD : MonoBehaviour
                 pauseMenu.SetActive(false);
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 cameraController.lookSensitivity = gameManager.GetPlayerInfo().sensitivity;
+                AudioListener.volume = soundKeep/100f;
             }
         }
         
@@ -56,5 +61,12 @@ public class PlayerHUD : MonoBehaviour
     public void ChangeSensitivity(float value)
     {
         gameManager.GetPlayerInfo().sensitivity = value;
+        sensitivity.SetText(value.ToString());
+    }
+
+    public void ChangeSound(float value)
+    {
+        soundKeep = value;
+        sound.SetText(value.ToString());
     }
 }

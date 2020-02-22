@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         waterLevelStartingHeight = waterLevelObject.transform.position.y;
         waterLevelFinalHeight += waterLevelStartingHeight;
+        playerInfo.score = 0;
     }
 
     void Update()
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
             playerInfo.UpdateHighScore();
+            Time.timeScale = 1f;
             SceneManager.LoadScene(2);
     }
 

@@ -17,7 +17,7 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI sound = null;
 
     [SerializeField] KeyCode pauseKey = KeyCode.Escape;
-    
+
     GameManager gameManager = null;
     CameraController cameraController = null;
 
@@ -41,6 +41,7 @@ public class PlayerHUD : MonoBehaviour
             {
                 Time.timeScale = 0;
                 pauseMenu.SetActive(true);
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
                 UnityEngine.Cursor.lockState = CursorLockMode.Confined;
                 UnityEngine.Cursor.visible = true;
                 cameraController.lookSensitivity = 0f;

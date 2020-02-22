@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
             playerInfo.UpdateHighScore();
             Time.timeScale = 1f;
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             Cursor.lockState = CursorLockMode.Confined;
             SceneManager.LoadScene(2);
     }

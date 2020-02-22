@@ -17,8 +17,7 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI sound = null;
 
     [SerializeField] KeyCode pauseKey = KeyCode.Escape;
-
-    float soundKeep = 100;
+    
     GameManager gameManager = null;
     CameraController cameraController = null;
 
@@ -54,7 +53,7 @@ public class PlayerHUD : MonoBehaviour
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 UnityEngine.Cursor.visible = false;
                 cameraController.lookSensitivity = gameManager.GetPlayerInfo().sensitivity;
-                AudioListener.volume = soundKeep/100f;
+                AudioListener.volume = gameManager.GetPlayerInfo().sound/100f;
             }
         }
         
@@ -68,7 +67,7 @@ public class PlayerHUD : MonoBehaviour
 
     public void ChangeSound(float value)
     {
-        soundKeep = value;
+        gameManager.GetPlayerInfo().sound = value;
         sound.SetText(value.ToString());
     }
 }

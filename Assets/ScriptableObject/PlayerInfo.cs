@@ -7,7 +7,7 @@ public class PlayerInfo : ScriptableObject
 {
     public int score = 0;
     public int highScore = 0;
-    public float sensitivity = 100f;
+    public float sensitivity = 3f;
 
     public void UpdateHighScore()
     {

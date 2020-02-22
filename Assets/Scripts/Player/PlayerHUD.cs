@@ -43,6 +43,7 @@ public class PlayerHUD : MonoBehaviour
                 Time.timeScale = 0;
                 pauseMenu.SetActive(true);
                 UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+                UnityEngine.Cursor.visible = true;
                 cameraController.lookSensitivity = 0f;
                 AudioListener.volume = 0f;
             }
@@ -51,6 +52,7 @@ public class PlayerHUD : MonoBehaviour
                 Time.timeScale = 1;
                 pauseMenu.SetActive(false);
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
                 cameraController.lookSensitivity = gameManager.GetPlayerInfo().sensitivity;
                 AudioListener.volume = soundKeep/100f;
             }

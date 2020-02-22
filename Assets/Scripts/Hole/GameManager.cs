@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
         waterLevelStartingHeight = waterLevelObject.transform.position.y;
         waterLevelFinalHeight += waterLevelStartingHeight;
         playerInfo.score = 0;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -61,6 +63,8 @@ public class GameManager : MonoBehaviour
             playerInfo.UpdateHighScore();
             Time.timeScale = 1f;
             SceneManager.LoadScene(2);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void UpdateWaterLevel()
